@@ -48,6 +48,6 @@ def process(raw):
     return u''.join(map(char_to_digit, filter(is_alphanum, raw.upper())))
 
 def tel(raw):
-    return safe(u'<a href="+1%s">%s</a>' % (process(raw), raw))
+    return safe(u'<a href="tel:+1%s">%s</a>' % (process(raw), raw))
 
 register.filter('tel', tel)
