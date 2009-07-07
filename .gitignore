@@ -1,0 +1,6 @@
+*~
+*.pyc
+todo
+local.env
+ws/local_settings.py
+db
