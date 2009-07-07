@@ -1,7 +1,9 @@
-from django import template
 import string
 
+from django import template
 register = template.Library()
+
+__all__ = ['tel']
 
 ALPHANUM = string.digits + string.ascii_uppercase
 
@@ -45,3 +47,5 @@ def process(raw):
 
 def tel(raw):
     return u'<a href="+1%s">%s</a>' % (process(raw), raw)
+
+register.filter('tel', tel)
