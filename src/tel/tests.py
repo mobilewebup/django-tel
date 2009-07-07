@@ -7,6 +7,12 @@ class TestEndToEnd(unittest.TestCase):
             {'value' : u'4155551212',
              'out'   : u'<a href="+14155551212">4155551212</a>',
              },
+            {'value' : u'415-555-1212',
+             'out'   : u'<a href="+14155551212">415-555-1212</a>',
+             },
+            {'value' : u'(415)555-1212',
+             'out'   : u'<a href="+14155551212">(415)555-1212</a>',
+             },
             ]
         for ii, td in enumerate(testdata):
             expected = td['out']
