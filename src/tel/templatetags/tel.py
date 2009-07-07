@@ -1,5 +1,7 @@
 import string
 
+from django.template.defaultfilters import safe
+
 from django import template
 register = template.Library()
 
@@ -46,6 +48,6 @@ def process(raw):
     return u''.join(map(char_to_digit, filter(is_alphanum, raw.upper())))
 
 def tel(raw):
-    return u'<a href="+1%s">%s</a>' % (process(raw), raw)
+    return safe(u'<a href="+1%s">%s</a>' % (process(raw), raw))
 
 register.filter('tel', tel)

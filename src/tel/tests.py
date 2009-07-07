@@ -34,3 +34,9 @@ class TestEndToEnd(unittest.TestCase):
             actual = tel.tel(td['value'])
             msg = 'e: "%s", a: "%s" [%d]' % (expected, actual, ii)
             self.assertEqual(expected, actual, msg)
+
+    def test_safe(self):
+        """verify that html is not escaped"""
+        from django.template import Template, Context
+        t = Template('{% load tel %}{{"4155551212"|tel}}')
+        self.assertEqual('<a href="+14155551212">4155551212</a>', t.render(Context()))
