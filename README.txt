@@ -66,9 +66,9 @@ DEPENDENCIES
 
 So far, django-tel has only been tested with Python 2.6 and the beta
 release of Django 1.1, running Linux.  There is no special reason it
-cannot be made to run under other conditions (Python 2.4 and Django
-1.0 on Windows, for example).  Please contact amax@hilomath.com if you
-discover any issues.
+cannot run (or be made to run) under other conditions; Python 2.4 and
+Django 1.0 on Windows, for example.  Please contact amax@hilomath.com
+if you discover any issues.
 
 There are no other dependencies.
 
