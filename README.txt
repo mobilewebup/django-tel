@@ -72,12 +72,6 @@ if you discover any issues.
 
 There are no other dependencies.
 
-KNOWN ISSUES
-
-django-tel works well for USA-like phone number formats.  Right now,
-it unfortunately ignores the rest of the world.  (How impolite!)  The
-plan is to remedy this eventually.
-
 FOR DEVELOPERS
 
 Please see DEV.txt.
