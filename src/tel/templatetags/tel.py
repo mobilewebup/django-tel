@@ -7,8 +7,10 @@ register = template.Library()
 
 __all__ = ['tel']
 
+#: alphanumeric
 ALPHANUM = string.digits + string.ascii_uppercase
 
+#: Map of alphabet letters to phone digits on a standard touchpad phone
 DIGIT_MAP = {
     u'A' : u'2',
     u'B' : u'2',
@@ -38,16 +40,49 @@ DIGIT_MAP = {
     u'Z' : u'9',
     }
 
+#: Telephone number prefix.  BUG: this is USA-centric
+TEL_PREFIX = u'+1'
+
 def is_alphanum(c):
     return c in ALPHANUM
 
 def char_to_digit(c):
+    '''
+    Replace char with the appropriate numeric digit
+
+    If the character is already a number, just return that.
+
+    '''
     return DIGIT_MAP.get(c, c)
 
-def process(raw):
+def norm_tel(raw):
+    '''
+    normalize a telephone number, including converting any letters to numbers
+
+    Strip out any non-numeric characters, after converting any letters to digits.
+
+    @param raw : The unprocessed number
+    @type  raw : unicode
+
+    @return    : A normalized telephone number
+    @rtype     : unicode
+    
+    '''
     return u''.join(map(char_to_digit, filter(is_alphanum, raw.upper())))
 
 def tel(raw):
-    return safe(u'<a href="tel:+1%s">%s</a>' % (process(raw), raw))
+    '''
+    Create click-to-call URL anchor tag from a telephone number
 
-register.filter('tel', tel)
+    This is the Django template filter.  The returned string is an
+    HTML snippet: an anchor tag for a telephone number.  For example,
+    call tel('(415)555-1212') will yield the HTML
+    '<a href="+14155551212">(415)555-1212</a>'.
+
+    The returned string is chained into the standard django template
+    filter safe, so that the HTML will not be escaped when rendered.
+    
+    '''
+    return safe(u'<a href="tel:%s%s">%s</a>' % (TEL_PREFIX, norm_tel(raw), raw))
+
+register.filter(u'tel', tel)
