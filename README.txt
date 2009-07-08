@@ -18,11 +18,20 @@ For example, in your django template:
 
 The tel filter also knows how to convert letters:
 
-  {{"800-2-Buy-Now"|tell}}
+  {{"800-2-Buy-Now"|tel}}
 
 ... will render as:
 
   <a href="tel:+18002289669">800-2-Buy-Now</a>
+
+The tel filter knows how to trim numbers with too many digits...
+useful for over-long mnemonics:
+     
+  {{"800-BUY-IT-NOW"|tel}}
+
+... will render as:
+
+  <a href="tel:+18002894866">800-BUY-IT-NOW</a>
 
 django-tel is currently tailored for USA phone networks.  More
 international support is planned. Quality patches are appreciated and

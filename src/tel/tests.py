@@ -32,6 +32,10 @@ class TestEndToEnd(unittest.TestCase):
             {'value' : u'800-2-Buy-Now',
              'out'   : u'<a href="tel:+18002289669">800-2-Buy-Now</a>',
              },
+            # chop off excess digits
+            {'value' : u'800-BUY-IT-NOW',
+             'out'   : u'<a href="tel:+18002894866">800-BUY-IT-NOW</a>',
+             },
             ]
         for ii, td in enumerate(testdata):
             expected = td['out']

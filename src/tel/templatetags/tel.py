@@ -7,6 +7,9 @@ register = template.Library()
 
 __all__ = ['tel']
 
+# Max number of digits in phone number, not counting country prefix.  (USA centric)
+NUMBER_SIZE = 10
+
 #: alphanumeric
 ALPHANUM = string.digits + string.ascii_uppercase
 
@@ -40,7 +43,7 @@ DIGIT_MAP = {
     u'Z' : u'9',
     }
 
-#: Telephone number prefix.  BUG: this is USA-centric
+#: Telephone number prefix.  (USA centric)
 TEL_PREFIX = u'+1'
 
 def is_alphanum(c):
@@ -68,7 +71,7 @@ def norm_tel(raw):
     @rtype     : unicode
     
     '''
-    return u''.join(map(char_to_digit, filter(is_alphanum, raw.upper())))
+    return u''.join(map(char_to_digit, filter(is_alphanum, raw.upper())))[:NUMBER_SIZE]
 
 def tel(raw):
     '''
