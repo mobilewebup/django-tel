@@ -1,4 +1,5 @@
 import unittest
+from django.template import Template, Context
 from templatetags import tel
 
 class TestEndToEnd(unittest.TestCase):
@@ -45,6 +46,10 @@ class TestEndToEnd(unittest.TestCase):
 
     def test_safe(self):
         """verify that html is not escaped"""
-        from django.template import Template, Context
         t = Template('{% load tel %}{{"4155551212"|tel}}')
         self.assertEqual('<a href="tel:+14155551212">4155551212</a>', t.render(Context()))
+
+    def test_varsub(self):
+        """Verify variable substitution works"""
+        t = Template('{% load tel %}{{somevar|tel}}')
+        self.assertEqual('<a href="tel:+14155551212">4155551212</a>', t.render(Context({'somevar' : '4155551212'})))

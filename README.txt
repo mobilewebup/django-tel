@@ -16,7 +16,11 @@ For example, in your django template:
 
  <a href="tel:+14155551212">415-555-1212</a>
 
-The tel filter also knows how to convert letters:
+Template variables also work seemlessly, of course.  If the context
+sets phone_number to be "415-555-1212", {{phone_number|tel}} will
+render as above.
+
+The tel filter knows how to convert letters:
 
   {{"800-2-Buy-Now"|tel}}
 
