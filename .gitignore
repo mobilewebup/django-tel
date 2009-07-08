@@ -2,5 +2,6 @@
 *.pyc
 todo
 local.env
-ws/local_settings.py
-db
+django-tel.tar.gz
+src/django_tel.egg-info
+build

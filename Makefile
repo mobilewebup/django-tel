@@ -6,6 +6,7 @@ CLEAN_ITEMS = \
 
 test:
 	nosetests
+
 clean:
 	rm -rf $(CLEAN_ITEMS)
 
