@@ -1,12 +1,11 @@
 django-tel - telephone URL support for Django
 
-This app provides a helper template filter for creating "click to
-call" URLs, as described in RFC 2806: "URLs for Telephone Calls". [0]
+This app provides a template filter for creating "click to call" URLs,
+as described in RFC 2806: "URLs for Telephone Calls". [0]
 
-The "tel" template filter takes will transform a phone number like
-string into a well-formed tel: hyperlink.  This type of link can be
-clicked to initiate a phone call in most modern phones capable of
-viewing web pages.
+The "tel" template filter transforms a phone number into a well-formed
+tel: hyperlink.  This type of link can be clicked to initiate a phone
+call in most modern phones capable of viewing web pages.
 
 For example, in your django template:
 
@@ -44,7 +43,8 @@ Simply install the tel module.  This can be done with the command
 
   python setup.py install
 
-Or just copy the src/tel directory into the Python path.
+Or just copy the src/tel directory into the Python path or django apps
+directory.
 
 USAGE
 
