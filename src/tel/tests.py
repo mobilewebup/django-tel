@@ -13,6 +13,7 @@ class TestEndToEnd(unittest.TestCase):
             {'value' : u'(415)555-1212',
              'out'   : u'<a href="tel:+14155551212">(415)555-1212</a>',
              },
+            # convert letters
             {'value' : u'415-555-ROCK',
              'out'   : u'<a href="tel:+14155557625">415-555-ROCK</a>',
              },
