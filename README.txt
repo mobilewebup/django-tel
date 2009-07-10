@@ -20,7 +20,8 @@ Template variables also work seemlessly, of course.  If the context
 sets phone_number to be "415-555-1212", {{phone_number|tel}} will
 render as above.
 
-The tel filter knows how to convert letters:
+The tel filter also converts letters, like the builtin phone2numeric
+filter [1]:
 
   {{"800-2-Buy-Now"|tel}}
 
@@ -28,8 +29,8 @@ The tel filter knows how to convert letters:
 
   <a href="tel:+18002289669">800-2-Buy-Now</a>
 
-The tel filter knows how to trim numbers with too many digits...
-useful for over-long mnemonics:
+The tel filter trims numbers with too many digits...  useful for
+over-long mnemonics:
      
   {{"800-BUY-IT-NOW"|tel}}
 
@@ -81,7 +82,7 @@ GPL 3
 
 AUTHOR
 
-Django-tel is sponsored by Hilomath Mobile Web Development [1].  If
+Django-tel is sponsored by Hilomath Mobile Web Development [2].  If
 you need expert assistance in creating websites or web applications
 that look and feel great on your customers' hand-held devices, we can
 help.  Contact Aaron Maxwell at amax@hilomath.com or visit
@@ -92,4 +93,7 @@ please also contact Aaron Maxwell at amax@hilomath.com .
 
 [0] http://www.ietf.org/rfc/rfc2806.txt
 
-[1] http://hilomath.com/
+[1] http://docs.djangoproject.com/en/dev/ref/templates/builtins/#phone2numeric
+
+[2] http://hilomath.com/
+
