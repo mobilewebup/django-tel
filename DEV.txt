@@ -14,4 +14,7 @@ export PYTHONPATH=$PWD/src:$HOME/src/Django-1.1/:$PYTHONPATH
 export DJANGO_SETTINGS_MODULE=testsettings
 }}}
 
+After that, simply executing "nosetests" with no arguments will find
+and run all tests.
+
 [0] http://somethingaboutorange.com/mrl/projects/nose/
