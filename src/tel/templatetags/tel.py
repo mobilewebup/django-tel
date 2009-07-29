@@ -107,7 +107,7 @@ def telurl(phone):
 register.filter(u'tel', tel)
 
 #: regular expression that's meant to find phone numbers in blocks of text
-PHONE_RE = re.compile(r'((?:1[.-]?)?\d{3}[.-]?\d{3}[.-]?\d{4}|\(\d{3}\)[.-]?\d{3}[.-]?\d{4})')
+PHONE_RE = re.compile(r'(\d{3}[.-]?\d{3}[.-]?\d{4}|\(\d{3}\)[.-]?\d{3}[.-]?\d{4})')
 
 def telify_text(text):
     """
