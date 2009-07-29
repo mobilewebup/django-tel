@@ -1,6 +1,8 @@
 import string
 
 from django.template.defaultfilters import safe
+from django.template import Node
+
 
 from django import template
 register = template.Library()
@@ -86,6 +88,46 @@ def tel(raw):
     filter safe, so that the HTML will not be escaped when rendered.
     
     '''
-    return safe(u'<a href="tel:%s%s">%s</a>' % (TEL_PREFIX, norm_tel(raw), raw))
+    return safe(telurl(raw))
+
+def telurl(phone):
+    """
+    create a tel anchor tag for a phone number
+    
+    @param phone : Phone number
+    @type  phone : unicode
+
+    @return      : tel anchor tag
+    @rtype       : unicode
+    
+    """
+    return u'<a href="tel:%s%s">%s</a>' % (TEL_PREFIX, norm_tel(phone), phone)
 
 register.filter(u'tel', tel)
+
+def telify_text(text):
+    """
+    Find all phone numbers in text, and replace them with click-to-call URLs
+
+    @param text : Text containing 0 or more phone numbers
+    @type  text : unicode
+
+    @return     : Same text, with phone numbers replaced with tel HTML anchor tags
+    @rtype      : unicode
+    
+    """
+    return text
+
+class TelifyNode(Node):
+    def __init__(self, nodelist):
+        self.nodelist = nodelist
+    def render(self, context):
+        unprocessed = self.nodelist.render(context)
+        return telify_text(unprocessed)
+
+def do_telify(parser, token):
+    nodelist = parser.parse(('endtelify',))
+    parser.delete_first_token()
+    return TelifyNode(nodelist)
+
+register.tag(u'telify', do_telify)
