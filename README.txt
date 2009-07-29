@@ -94,8 +94,8 @@ load statement:
 
  {% load tel %}
 
-3) The tel filter will now be available.  Simply write something like
-{{"415-4-PYTHON"|tel}} in the template.
+3) The tel filter and telify tag will now be available.  Simply write
+something like {{"415-4-PYTHON"|tel}} in the template.
 
 DEPENDENCIES
 
