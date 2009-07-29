@@ -50,12 +50,12 @@ and apply the "tel" filter to them.  What is recognized as a phone
 number is defined in tel.PHONE_RE, a compiled regular expression.
 
   {% load tel %}
-  {% telify %}Call 1-800-555-1212 to get your free gift today! (Not
+  {% telify %}Call 800-555-1212 to get your free gift today! (Not
   866-555-1212, that is something else entirely.){% endtelify %}
 
 ... will render as:
 
-  Call <a href="tel:+18005551212">1-800-555-1212</a> today! (Not <a
+  Call <a href="tel:+18005551212">800-555-1212</a> today! (Not <a
   href="tel:+18665551212">866-555-1212</a>, that is something else
   entirely.)
 
