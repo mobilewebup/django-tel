@@ -67,6 +67,20 @@ class Test_telify_tag(unittest.TestCase):
             {'in'  : '<p><strong>Not</strong> a phone number.</p>',
              'out' : '<p><strong>Not</strong> a phone number.</p>',
              },
+            # single phone number
+            {'in'  : '800.555.1212',
+             'out' : '<a href="tel:+18005551212">800.555.1212</a>',
+             },
+            {'in'  : '800-555-1212',
+             'out' : '<a href="tel:+18005551212">800-555-1212</a>',
+             },
+            {'in'  : 'Call 800-555-1212 today',
+             'out' : 'Call <a href="tel:+18005551212">800-555-1212</a> today',
+             },
+            # multiple phone numbers
+            {'in'  : 'Call 800-555-1212 today.  But do not call 800-555-1213, that is for losers!',
+             'out' : 'Call <a href="tel:+18005551212">800-555-1212</a> today.  But do not call <a href="tel:+18005551213">800-555-1213</a>, that is for losers!',
+             },
             ]
         for ii, td in enumerate(testdata):
             expected = td['out']

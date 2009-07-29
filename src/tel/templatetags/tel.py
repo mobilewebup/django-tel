@@ -1,3 +1,4 @@
+import re
 import string
 
 from django.template.defaultfilters import safe
@@ -103,7 +104,12 @@ def telurl(phone):
     """
     return u'<a href="tel:%s%s">%s</a>' % (TEL_PREFIX, norm_tel(phone), phone)
 
+def telurl_match(phone_match):
+    return telurl(phone_match.group(1))
+
 register.filter(u'tel', tel)
+
+PHONE_RE = re.compile(r'(\d{3}[.-]?\d{3}[.-]?\d{4})')
 
 def telify_text(text):
     """
@@ -116,7 +122,7 @@ def telify_text(text):
     @rtype      : unicode
     
     """
-    return text
+    return PHONE_RE.sub(telurl_match, text)
 
 class TelifyNode(Node):
     def __init__(self, nodelist):
