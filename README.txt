@@ -65,7 +65,7 @@ HTML like this:
 
   {# Danger, don't do this! #}
   {% telify %}<img src="/path/to/button.jpg" 
-                   alt="Call 1-800-555-1212"/>
+                   alt="Call 800-555-1212"/>
   {% endtelify %}
 
 ... then that will insert an HTML tag in the alt attribute text.
