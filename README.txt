@@ -4,11 +4,14 @@ This app provides template tools for creating "click to call" URLs, as
 described in RFC 2806: "URLs for Telephone Calls". [0]  The tools are
 the "tel" filter, and the "telify" tag.
 
-To use either, load the app with  "{% load tel %}" in the template.
+To use either, first load the tel app with "{% load tel %}" in the
+template.
+
+TEL FILTER
 
 The "tel" template filter transforms a phone number into a well-formed
 tel: hyperlink.  This type of link can be clicked to initiate a phone
-call in most modern phones capable of viewing web pages.
+call in phone web browsers.
 
 For example, in your django template:
 
@@ -41,9 +44,7 @@ over-long mnemonics:
 
   <a href="tel:+18002894866">800-BUY-IT-NOW</a>
 
-django-tel is currently tailored for USA phone networks.  More
-international support is planned. Quality patches are appreciated and
-accepted; see DEV.txt.
+TELIFY TAG
 
 The "telify" tag will locate all phone numbers in a region of text,
 and apply the "tel" filter to them.  What is recognized as a phone
@@ -83,7 +84,7 @@ Simply install the tel module.  This can be done with the command
   python setup.py install
 
 Or just copy the src/tel directory into the Python path or django apps
-directory.
+directory.  Then configure the site as described in USAGE.
 
 USAGE
 
@@ -96,6 +97,10 @@ load statement:
 
 3) The tel filter and telify tag will now be available.  Simply write
 something like {{"415-4-PYTHON"|tel}} in the template.
+
+django-tel is currently tailored for USA phone networks.  More
+international support is planned. Quality patches are appreciated and
+accepted; see DEV.txt.
 
 DEPENDENCIES
 
