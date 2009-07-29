@@ -59,8 +59,8 @@ number is defined in tel.PHONE_RE, a compiled regular expression.
   href="tel:+18665551212">866-555-1212</a>, that is something else
   entirely.)
 
-Note that the matching is currently not very intelligent.  So if you
-have HTML like this:
+Be aware: Matching is currently not very intelligent.  If you have
+HTML like this:
 
   {# Danger, don't do this! #}
   {% telify %}<img src="/path/to/button.jpg" 
@@ -68,8 +68,13 @@ have HTML like this:
   {% endtelify %}
 
 ... then that will insert an HTML tag in the alt attribute text.
-Highly broken markup, and not what you want.  So until we make this
+Highly broken markup, and not what you want.  So until telify becomes
 smarter, please use this tag with care.
+
+telify only finds fully numeric numbers.  If you want letter-to-number
+conversion, you'll have to use the tel filter instead.  Also, telify
+only finds ten-digit numbers that include the area code, like
+"800-222-3333"; not local numbers like "222-3333".
 
 INSTALLATION
 

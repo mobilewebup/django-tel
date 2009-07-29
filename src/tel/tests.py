@@ -87,3 +87,47 @@ class Test_telify_tag(unittest.TestCase):
             actual = tel.telify_text(td['in'])
             msg = 'e: "%s", a: "%s" [%d]' % (expected, actual, ii)
             self.assertEqual(expected, actual, msg)
+
+    def test_phone_finding(self):
+        "Checks on phone number finding (regex matching)"
+        testdata = [
+            {'text'   : '',
+             'phones' : [],
+             },
+            {'text'   : '800-222-3333',
+             'phones' : ['800-222-3333'],
+             },
+            {'text'   : '800-222-3333\n800-333-4444',
+             'phones' : ['800-222-3333', '800-333-4444'],
+             },
+            {'text'   : '800.222.3333\n800-333-4444',
+             'phones' : ['800.222.3333', '800-333-4444'],
+             },
+            {'text'   : '800.222.3333',
+             'phones' : ['800.222.3333'],
+             },
+            {'text'   : '(800)222-3333',
+             'phones' : ['(800)222-3333'],
+             },
+            {'text'   : '1-800-222-3333',
+             'phones' : ['1-800-222-3333'],
+             },
+            {'text'   : '1.800.222.3333',
+             'phones' : ['1.800.222.3333'],
+             },
+            {'text'   : '1-800-222-3333\n(667)682-7767',
+             'phones' : ['1-800-222-3333', '(667)682-7767'],
+             },
+            {'text'   : 'Can the regex find the number 1-800-222-3333 in this block',
+             'phones' : ['1-800-222-3333'],
+             },
+            {'text'   : 'Can the regex find the number 8002223333 in this block',
+             'phones' : ['8002223333'],
+             },
+            ]
+        for ii, td in enumerate(testdata):
+            expected = td['phones']
+            actual = tel.PHONE_RE.findall(td['text'])
+            msg = 'e: "%s", a: "%s" [%d]' % (expected, actual, ii)
+            self.assertEqual(expected, actual, msg)
+            
