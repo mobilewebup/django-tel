@@ -104,11 +104,9 @@ def telurl(phone):
     """
     return u'<a href="tel:%s%s">%s</a>' % (TEL_PREFIX, norm_tel(phone), phone)
 
-def telurl_match(phone_match):
-    return telurl(phone_match.group(1))
-
 register.filter(u'tel', tel)
 
+#: regular expression that's meant to find phone numbers in blocks of text
 PHONE_RE = re.compile(r'(\d{3}[.-]?\d{3}[.-]?\d{4})')
 
 def telify_text(text):
@@ -122,16 +120,23 @@ def telify_text(text):
     @rtype      : unicode
     
     """
+    def telurl_match(phone_match):
+        return telurl(phone_match.group(1))
     return PHONE_RE.sub(telurl_match, text)
 
 class TelifyNode(Node):
+    """
+    Node for applying telify transformation
+    """
     def __init__(self, nodelist):
         self.nodelist = nodelist
     def render(self, context):
-        unprocessed = self.nodelist.render(context)
-        return telify_text(unprocessed)
+        return telify_text(self.nodelist.render(context))
 
 def do_telify(parser, token):
+    """
+    Apply the telify tag transformation to a section of text
+    """
     nodelist = parser.parse(('endtelify',))
     parser.delete_first_token()
     return TelifyNode(nodelist)
