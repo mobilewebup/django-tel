@@ -125,3 +125,23 @@ class Test_telify_tag(unittest.TestCase):
             msg = 'e: "%s", a: "%s" [%d]' % (expected, actual, ii)
             self.assertEqual(expected, actual, msg)
             
+    def test_block(self):
+        """verify that telify block actually works as advertised"""
+        testdata = [
+            {'content' : '4155551212',
+             'out'     : '<a href="tel:+14155551212">4155551212</a>',
+             },
+            {'content' : '(415)555-1212',
+             'out'     : '<a href="tel:+14155551212">(415)555-1212</a>',
+             },
+            {'content' : '<p>(415)555-1212</p>\n<p>667.682.7767</p>',
+             'out'     : '<p><a href="tel:+14155551212">(415)555-1212</a></p>\n<p><a href="tel:+16676827767">667.682.7767</a></p>',
+             },
+            ]
+        for ii, td in enumerate(testdata):
+            t = Template('{% load tel %}{% telify %}' + td['content'] + '{% endtelify %}')
+            expected = td['out']
+            actual = t.render(Context())
+            msg = 'e: "%s", a: "%s" [%d]' % (expected, actual, ii)
+            self.assertEqual(expected, actual, msg)
+
