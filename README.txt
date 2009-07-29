@@ -1,7 +1,8 @@
 django-tel - telephone URL support for Django
 
-This app provides a template filter for creating "click to call" URLs,
-as described in RFC 2806: "URLs for Telephone Calls". [0]
+This app provides template tools for creating "click to call" URLs, as
+described in RFC 2806: "URLs for Telephone Calls". [0]  The tools are
+the "tel" filter, and the "telify" tag.
 
 The "tel" template filter transforms a phone number into a well-formed
 tel: hyperlink.  This type of link can be clicked to initiate a phone
@@ -41,6 +42,32 @@ over-long mnemonics:
 django-tel is currently tailored for USA phone networks.  More
 international support is planned. Quality patches are appreciated and
 accepted; see DEV.txt.
+
+The "telify" tag will locate all phone numbers in a region of text,
+and apply the "tel" filter to them.  What is recognized as a phone
+number is defined in tel.PHONE_RE, a compiled regular expression.
+
+{% telify %}Call 1-800-555-1212 today!{% endtelify %}
+
+{% telify %}Call 1-800-555-1212 to get your free gift today! (Not
+866-555-1212, that is something else entirely.){% endtelify %}
+
+... will render as:
+
+Call <a href="tel:+18005551212">1-800-555-1212</a> today! (Not <a
+href="tel:+18665551212">866-555-1212</a>, that is something else
+entirely.)
+
+Note that the matching is currently not very intelligent.  So if you
+have HTML like this:
+
+  {# Danger, don't do this! #}
+  {% telify %}<img src="/path/to/button.jpg" 
+                   alt="Call 1-800-555-1212"/>
+  {% endtelify %}
+
+... then that will insert an HTML tag in the alt attribute text.
+Highly broken, and not what you want.
 
 INSTALLATION
 
