@@ -1,6 +1,7 @@
-PACK = django-tel.tar.gz
+PACK = django-tel
 CLEAN_ITEMS = \
   $(PACK) \
+  $(PACK).tar.gz \
   src/django_tel.egg-info \
   build
 
@@ -10,6 +11,6 @@ test:
 clean:
 	rm -rf $(CLEAN_ITEMS)
 
-pack:
-	git archive --format=tar HEAD | gzip > $(PACK)
-
+pack: clean
+	git checkout-index -a --prefix=$(PACK)/
+	tar zcf $(PACK).tar.gz $(PACK)
