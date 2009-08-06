@@ -1,6 +1,6 @@
 import re
 import string
-
+from django.template.defaultfilters import force_escape
 from django.utils.safestring import mark_safe
 from django.template import Node
 
@@ -85,10 +85,20 @@ def tel(raw):
     call tel('(415)555-1212') will yield the HTML
     '<a href="+14155551212">(415)555-1212</a>'.
 
-    The returned string is chained into the standard django template
-    filter safe, so that the HTML will not be escaped when rendered.
+    The returned string is marked safe, so that the HTML will not be
+    escaped when rendered.
     
+    EXCEPTION: As a protection, if the filter input is so unlike an
+    actual phone number that it contains any HTML-unsafe characters
+    (such as a greater-than sign), tel will return the string
+    untransformed, in a way that the template engine will then escape.
+    This is to ensure the final response will contain no broken HTML,
+    no matter what is filtered.
+
     '''
+    for c in u'<>\'"&':
+        if c in raw:
+            return force_escape(raw)
     return mark_safe(telurl(raw))
 
 def telurl(phone):

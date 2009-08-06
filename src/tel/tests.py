@@ -49,6 +49,13 @@ class Test_tel_filter(unittest.TestCase):
         t = Template('{% load tel %}{{"4155551212"|tel}}')
         self.assertEqual('<a href="tel:+14155551212">4155551212</a>', t.render(Context()))
 
+    def test_garbage_in(self):
+        """verify that unsafe input is caught"""
+        t = Template(u'{% load tel %}{{somevar|tel}}')
+        c = {'somevar' : "\"<foo>'blah' &copy; \"bloof\"</foo>\""}
+        self.assertEqual(u'&quot;&lt;foo&gt;&#39;blah&#39; &amp;copy; &quot;bloof&quot;&lt;/foo&gt;&quot;',
+                         t.render(Context(c)))
+
     def test_varsub(self):
         """Verify variable substitution works"""
         t = Template('{% load tel %}{{somevar|tel}}')
