@@ -1,7 +1,7 @@
 import re
 import string
 
-from django.template.defaultfilters import safe
+from django.utils.safestring import mark_safe
 from django.template import Node
 
 
@@ -89,7 +89,7 @@ def tel(raw):
     filter safe, so that the HTML will not be escaped when rendered.
     
     '''
-    return safe(telurl(raw))
+    return mark_safe(telurl(raw))
 
 def telurl(phone):
     """
