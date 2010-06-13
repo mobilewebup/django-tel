@@ -107,7 +107,7 @@ DEPENDENCIES
 So far, django-tel has only been tested with Python 2.6 and the beta
 release of Django 1.1, running Linux.  There is no special reason it
 cannot run (or be made to run) under other conditions; Python 2.4 and
-Django 1.0 on Windows, for example.  Please contact amax@hilomath.com
+Django 1.0 on Windows, for example.  Please contact amax@mobilewebup.com
 if you discover any issues.
 
 There are no other dependencies.
@@ -121,18 +121,18 @@ GPL 3
 
 AUTHOR
 
-Django-tel is sponsored by Hilomath Mobile Web Development [2].  If
-you need expert assistance in creating websites or web applications
-that look and feel great on your customers' hand-held devices, we can
-help.  Contact Aaron Maxwell at amax@hilomath.com or visit
-http://hilomath.com/ today .
+Django-tel is sponsored by Mobile Web Up [2].  If you need expert
+assistance in creating websites or web applications that look and feel
+great on your customers' hand-held devices, or just need to upgrade
+your existing web presence for mobile, we can help.  Visit us at
+http://mobilewebup.com/ today.
 
 For any development issues or bug reports related to django-tel,
-please also contact Aaron Maxwell at amax@hilomath.com .
+please also contact Aaron Maxwell at amax@mobilewebup.com .
 
 [0] http://www.ietf.org/rfc/rfc2806.txt
 
 [1] http://docs.djangoproject.com/en/dev/ref/templates/builtins/#phone2numeric
 
-[2] http://hilomath.com/
+[2] http://mobilewebup.com/
 

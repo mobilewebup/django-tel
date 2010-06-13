@@ -1,16 +1,16 @@
 If django-tel comes close to meeting a need of yours but falls short,
 please let me know.  You can send email about django-tel to
-amax@hilomath.com.  Quality patches are appreciated and accepted,
+amax@mobilewebup.com.  Quality patches are appreciated and accepted,
 especially if they include unit tests.  Existing unit tests are in
 src/tel/tests.py.
 
-Speaking of tests:  The easiest way to run tests is with nosetests
-[0].  Before they will run, you will need to set up your python path,
-and point to testsettings.py as the Django settings module.  For
-example, here is how I do it on my local machine:
+Speaking of tests: An easy way to run django-tel's tests is with
+nosetests [0].  Before they will run, you will need to set up your
+python path, and point to testsettings.py as the Django settings
+module.  For example, here is how I do it on my local machine:
 
 {{{
-export PYTHONPATH=$PWD/src:$HOME/src/Django-1.1/:$PYTHONPATH
+export PYTHONPATH=$PWD/src:$HOME/src/Django-1.2/:$PYTHONPATH
 export DJANGO_SETTINGS_MODULE=testsettings
 }}}
 

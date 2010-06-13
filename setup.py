@@ -3,8 +3,8 @@ try:
 except ImportError:
     from distutils.core import setup
 setup(name = "django-tel",
-      author = "Aaron Maxwell",
-      url = "http://hilomath.com/software/django-tel",
+      author = "Mobile Web Up",
+      url = "http://mobilewebup.com",
       version = '0.1',
       packages = ['tel'],
       package_dir = {'': 'src'},
