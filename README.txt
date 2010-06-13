@@ -117,7 +117,9 @@ FOR DEVELOPERS
 Please see DEV.txt.
 
 LICENSE
+
 GPL 3
+Copyright 2009-2010 Aaron Maxwell.
 
 AUTHOR
 
