@@ -10,6 +10,7 @@ test:
 
 clean:
 	rm -rf $(CLEAN_ITEMS)
+	rm $$(find . -name '*.pyc' -o -name '*~')
 
 pack: clean
 	git checkout-index -a --prefix=$(PACK)/
