@@ -3,6 +3,7 @@ import string
 from django.template.defaultfilters import force_escape
 from django.utils.safestring import mark_safe
 from django.template import Node
+from django.conf import settings
 
 
 from django import template
@@ -47,7 +48,7 @@ DIGIT_MAP = {
     }
 
 #: Telephone number prefix.  (USA centric)
-TEL_PREFIX = u'+1'
+TEL_PREFIX = getattr(settings, "TEL_PREFIX", u'+1')
 
 def is_alphanum(c):
     return c in ALPHANUM

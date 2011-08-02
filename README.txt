@@ -98,9 +98,10 @@ load statement:
 3) The tel filter and telify tag will now be available.  Simply write
 something like {{"415-4-PYTHON"|tel}} in the template.
 
-django-tel is currently tailored for USA phone networks.  More
-international support is planned. Quality patches are appreciated and
-accepted; see DEV.txt.
+4) Add `TEL_PREFIX` to your settings.py to change the international prefix.
+By default the prefix is `u'+1'`
+
+Quality patches are appreciated and accepted; see DEV.txt.
 
 DEPENDENCIES
 
