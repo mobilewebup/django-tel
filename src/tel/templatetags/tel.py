@@ -67,6 +67,7 @@ def norm_tel(raw):
     normalize a telephone number, including converting any letters to numbers
 
     Strip out any non-numeric characters, after converting any letters to digits.
+    Remove leading zeros
 
     @param raw : The unprocessed number
     @type  raw : unicode
@@ -75,7 +76,7 @@ def norm_tel(raw):
     @rtype     : unicode
     
     '''
-    return u''.join(map(char_to_digit, filter(is_alphanum, raw.upper())))[:NUMBER_SIZE]
+    return u''.join(map(char_to_digit, filter(is_alphanum, raw.lstrip("0").upper())))[:NUMBER_SIZE]
 
 def tel(raw):
     '''
