@@ -1,7 +1,7 @@
 # django-tel - telephone URL support for Django
 
 This app provides template tools for creating "click to call" URLs, as
-described in RFC 2806:["URLs for Telephone Calls"][0]. The tools are
+described in RFC 2806:[URLs for Telephone Calls][0]. The tools are
 the `tel` filter, and the `telify` tag.
 
 To use either, first load the tel app with `{% load tel %}` in the
@@ -109,6 +109,11 @@ you discover any issues.
 
 There are no other dependencies.
 
+## BUGS OR ISSUES?
+
+For any development issues or bug reports related to django-tel,
+please also contact Aaron Maxwell at amax@mobilewebup.com .
+
 ## FOR DEVELOPERS
 
 Please see DEV.txt.
@@ -126,10 +131,14 @@ great on your customers' hand-held devices, or just need to upgrade
 your existing web presence for mobile, we can help.  Visit us at
 http://mobilewebup.com/ today.
 
-For any development issues or bug reports related to django-tel,
-please also contact Aaron Maxwell at amax@mobilewebup.com .
+## CONTRIBUTORS
+
+* International Support - [Level Up][3]
+* Read me formatting - [Level Up][3]
+
 
 [0]: http://www.ietf.org/rfc/rfc2806.txt
 [1]: http://docs.djangoproject.com/en/dev/ref/templates/builtins/#phone2numeric
 [2]: http://mobilewebup.com/
+[3]: http://www.thisislevelup.com
 
