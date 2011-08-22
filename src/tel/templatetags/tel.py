@@ -3,6 +3,7 @@ import string
 from django.template.defaultfilters import force_escape
 from django.utils.safestring import mark_safe
 from django.template import Node
+from django.conf import settings
 
 
 from django import template
@@ -47,7 +48,7 @@ DIGIT_MAP = {
     }
 
 #: Telephone number prefix.  (USA centric)
-TEL_PREFIX = u'+1'
+TEL_PREFIX = getattr(settings, "TEL_PREFIX", u'+1')
 
 def is_alphanum(c):
     return c in ALPHANUM
@@ -66,6 +67,7 @@ def norm_tel(raw):
     normalize a telephone number, including converting any letters to numbers
 
     Strip out any non-numeric characters, after converting any letters to digits.
+    Remove leading zeros
 
     @param raw : The unprocessed number
     @type  raw : unicode
@@ -74,7 +76,7 @@ def norm_tel(raw):
     @rtype     : unicode
     
     '''
-    return u''.join(map(char_to_digit, filter(is_alphanum, raw.upper())))[:NUMBER_SIZE]
+    return u''.join(map(char_to_digit, filter(is_alphanum, raw.lstrip("0").upper())))[:NUMBER_SIZE]
 
 def tel(raw):
     '''

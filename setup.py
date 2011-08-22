@@ -5,7 +5,7 @@ except ImportError:
 setup(name = "django-tel",
       author = "Mobile Web Up",
       url = "http://mobilewebup.com",
-      version = '0.1',
+      version = '0.3',
       packages = ['tel'],
       package_dir = {'': 'src'},
       # distutils complain about these, anyone know an easy way to silence it?
